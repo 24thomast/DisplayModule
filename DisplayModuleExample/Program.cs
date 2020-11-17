@@ -29,13 +29,13 @@ namespace DisplayModuleExample
             {
                 if (gamepad.GetConnectionStatus() == UsbDeviceConnection.Connected)
                 {
-                    // Adding rectangles: [Display Module Name].AddRectSprite(colour, x_pos, y_pos, width, height)
+                    // Adds rectangles: [Display Module Name].AddRectSprite(colour, x_pos, y_pos, width, height)
                     DisplayModule.RectSprite x_status = displayModule.AddRectSprite(DisplayModule.Color.White, 5, 50, 20, 55);
                     DisplayModule.RectSprite y_status = displayModule.AddRectSprite(DisplayModule.Color.White, 32, 50, 20, 55);
                    
                     while (gamepad.GetConnectionStatus() == UsbDeviceConnection.Connected)
                     {
-                        // Changes the color of the rectangle depending on the x-value on the joystick
+                        // Changes the color of the rectangle depending on the x-value of the joystick
                         // [Rectangle Name].SetColor(colour)
                         if (gamepad.GetAxis(0) > 0)
                         {
@@ -50,7 +50,7 @@ namespace DisplayModuleExample
                             x_status.SetColor(DisplayModule.Color.White);
                         }
                         
-                        // Changes the color of the rectangle depending on the y-value on the joystick
+                        // Changes the color of the rectangle depending on the y-value of the joystick
                         // [Rectangle Name].SetColor(colour)
                         if (gamepad.GetAxis(1) > 0)
                         {
@@ -65,7 +65,7 @@ namespace DisplayModuleExample
                             y_status.SetColor(DisplayModule.Color.White);
                         }
 
-                        // Sets the text that the label displays: [Label Name].SetText(text: string)
+                        // Sets the text that the labels display: [Label Name].SetText(text: string)
                         x_title.SetText(gamepad.GetAxis(0).ToString());
                         y_title.SetText(gamepad.GetAxis(1).ToString());
                     }
