@@ -12,16 +12,16 @@ namespace DisplayModuleExample
     {
         public static void Main()
         {
-            // Game Controller
+            // Initializes a game controller
             GameController gamepad = new GameController(UsbHostDevice.GetInstance());
 
-            // NinaB Font
+            // Imports the NinaB font
             Font ninaB = Properties.Resources.GetFont(Properties.Resources.FontResources.NinaB);
 
-            // Initializing a display module: DisplayModule(port, orientation)
+            // Initializes a display module: DisplayModule(port, orientation)
             DisplayModule displayModule = new DisplayModule(CTRE.HERO.IO.Port8, DisplayModule.OrientationType.Landscape);
 
-            // Adding a label: [Display Module Name].AddLabelSprite(font, colour, x_pos, y_pos, width, height)
+            // Adds labels: [Display Module Name].AddLabelSprite(font, colour, x_pos, y_pos, width, height)
             DisplayModule.LabelSprite x_title = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 40, 0, 80, 16);
             DisplayModule.LabelSprite y_title = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 40, 30, 80, 16);
 
@@ -72,7 +72,7 @@ namespace DisplayModuleExample
                 }
                 else
                 {
-                    // Clears and erases everything on the display
+                    // Erases everything on the display
                     displayModule.Clear();
                 }
                 System.Threading.Thread.Sleep(100);
