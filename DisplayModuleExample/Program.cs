@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading;
+using System;
 using Microsoft.SPOT;
-using Microsoft.SPOT.Hardware;
 using CTRE.Gadgeteer.Module;
 using CTRE.Phoenix.Controller;
 using CTRE.Phoenix;
@@ -12,67 +10,81 @@ namespace DisplayModuleExample
     {
         public static void Main()
         {
-            // Initializes a game controller
+            // Game Controller
             GameController gamepad = new GameController(UsbHostDevice.GetInstance());
 
-            // Imports the NinaB font
+            // NinaB Font
             Font ninaB = Properties.Resources.GetFont(Properties.Resources.FontResources.NinaB);
 
-            // Initializes a display module: DisplayModule(port, orientation)
+            // Initializing a display module: DisplayModule(port, orientation)
             DisplayModule displayModule = new DisplayModule(CTRE.HERO.IO.Port8, DisplayModule.OrientationType.Landscape);
-
-            // Adds labels: [Display Module Name].AddLabelSprite(font, colour, x_pos, y_pos, width, height)
-            DisplayModule.LabelSprite x_title = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 40, 0, 80, 16);
-            DisplayModule.LabelSprite y_title = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 40, 30, 80, 16);
 
             while (true)
             {
+                // Connect the game controller first so that the sprites show up
                 if (gamepad.GetConnectionStatus() == UsbDeviceConnection.Connected)
                 {
-                    // Adds rectangles: [Display Module Name].AddRectSprite(colour, x_pos, y_pos, width, height)
-                    DisplayModule.RectSprite x_status = displayModule.AddRectSprite(DisplayModule.Color.White, 5, 50, 20, 55);
-                    DisplayModule.RectSprite y_status = displayModule.AddRectSprite(DisplayModule.Color.White, 32, 50, 20, 55);
-                   
+                    // Adding labels: [Display Module Name].AddLabelSprite(font, colour, x_pos, y_pos, width, height)
+                    DisplayModule.LabelSprite title = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 27, 17, 120, 15);
+                    DisplayModule.LabelSprite x_label = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 80, 65, 80, 15);
+                    DisplayModule.LabelSprite y_label = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 80, 85, 80, 15);
+
+                    // Adding rectangles: [Display Module Name].AddRectSprite(colour, x_pos, y_pos, width, height)
+                    DisplayModule.RectSprite x_rect = displayModule.AddRectSprite(DisplayModule.Color.White, 20, 55, 18, 55);
+                    DisplayModule.RectSprite y_rect = displayModule.AddRectSprite(DisplayModule.Color.White, 47, 55, 18, 55);
+                    
+                    // Everything gets cleared when the game controller is unplugged
                     while (gamepad.GetConnectionStatus() == UsbDeviceConnection.Connected)
                     {
-                        // Changes the color of the rectangle depending on the x-value of the joystick
-                        // [Rectangle Name].SetColor(colour)
-                        if (gamepad.GetAxis(0) > 0)
+                        // Declares and resets the joystick
+                        double x_value = gamepad.GetAxis(0);
+                        double y_value = -gamepad.GetAxis(1);
+                        if (x_value < 0.05 && x_value > -0.05)
                         {
-                            x_status.SetColor(DisplayModule.Color.Green);
+                            x_value = 0;
                         }
-                        else if (gamepad.GetAxis(0) < 0)
+                        if (y_value < 0.05 && y_value > -0.05)
                         {
-                            x_status.SetColor(DisplayModule.Color.Red);
-                        }
-                        else
-                        {
-                            x_status.SetColor(DisplayModule.Color.White);
-                        }
-                        
-                        // Changes the color of the rectangle depending on the y-value of the joystick
-                        // [Rectangle Name].SetColor(colour)
-                        if (gamepad.GetAxis(1) > 0)
-                        {
-                            y_status.SetColor(DisplayModule.Color.Green);
-                        }
-                        else if (gamepad.GetAxis(1) < 0)
-                        {
-                            y_status.SetColor(DisplayModule.Color.Red);
-                        }
-                        else
-                        {
-                            y_status.SetColor(DisplayModule.Color.White);
+                            y_value = 0;
                         }
 
-                        // Sets the text that the labels display: [Label Name].SetText(text: string)
-                        x_title.SetText(gamepad.GetAxis(0).ToString());
-                        y_title.SetText(gamepad.GetAxis(1).ToString());
+                        // Changes the color of the rectangle (x-value of the left joystick): [Rectangle Name].SetColor(colour)
+                        if (x_value > 0.05)
+                        {
+                            x_rect.SetColor(DisplayModule.Color.Green);
+                        }
+                        else if (x_value < -0.05)
+                        {
+                            x_rect.SetColor(DisplayModule.Color.Red);
+                        }
+                        else
+                        {
+                            x_rect.SetColor(DisplayModule.Color.White);
+                        }
+
+                        // Changes the color of the rectangle (y-value of the left joystick): [Rectangle Name].SetColor(colour)
+                        if (y_value > 0.05)
+                        {
+                            y_rect.SetColor(DisplayModule.Color.Green);
+                        }
+                        else if (y_value < -0.05)
+                        {
+                            y_rect.SetColor(DisplayModule.Color.Red);
+                        }
+                        else
+                        {
+                            y_rect.SetColor(DisplayModule.Color.White);
+                        }
+
+                        // Sets the text that the label displays: [Label Name].SetText(text: string)
+                        title.SetText("Joystick Control");
+                        x_label.SetText("X: " + x_value.ToString());
+                        y_label.SetText("Y: " + y_value.ToString());
                     }
                 }
                 else
                 {
-                    // Erases everything on the display
+                    // Clears and erases everything on the display
                     displayModule.Clear();
                 }
                 System.Threading.Thread.Sleep(100);
