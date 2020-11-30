@@ -24,6 +24,9 @@ namespace DisplayModuleExample
                 // Connect the game controller first so that the sprites show up
                 if (gamepad.GetConnectionStatus() == UsbDeviceConnection.Connected)
                 {
+                    // Erases everything on the display
+                    displayModule.Clear();
+
                     // Adding labels: [Display Module Name].AddLabelSprite(font, colour, x_pos, y_pos, width, height)
                     DisplayModule.LabelSprite title = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 27, 17, 120, 15);
                     DisplayModule.LabelSprite x_label = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 80, 65, 80, 15);
@@ -84,8 +87,15 @@ namespace DisplayModuleExample
                 }
                 else
                 {
-                    // Clears and erases everything on the display
+                    // Erases everything on the display
                     displayModule.Clear();
+
+                    DisplayModule.ResourceImageSprite image = displayModule.AddResourceImageSprite(Properties.Resources.ResourceManager, Properties.Resources.BinaryResources._70, Bitmap.BitmapImageType.Jpeg, 10, 10);
+                    
+                    while (gamepad.GetConnectionStatus() == UsbDeviceConnection.NotConnected)
+                    {
+
+                    }
                 }
                 System.Threading.Thread.Sleep(100);
             }
