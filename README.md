@@ -39,9 +39,8 @@
 
 10. Go back to 'Program.cs' and start programming the display module.
 
-<br>
 
-## More Info
+## More Info:
 For more resources, check out these pages:
 - https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/tree/master/HERO%20C%23/HERO%20DisplayModule%20Example
 - https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/tree/master/HERO%20C%23/DisplayBoard
