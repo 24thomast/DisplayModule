@@ -73,9 +73,6 @@
     <None Include="Resources\NinaB.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\image.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\img.jpg" />
   </ItemGroup>
 </Project>

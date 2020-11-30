@@ -37,7 +37,6 @@ namespace DisplayModuleExample.Properties
         internal enum BinaryResources : short
         {
             img = -2769,
-            image = 28828,
         }
         [System.SerializableAttribute()]
         internal enum FontResources : short
