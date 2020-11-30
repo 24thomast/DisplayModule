@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.SPOT;
 using CTRE.Gadgeteer.Module;
 using CTRE.Phoenix.Controller;
@@ -90,11 +90,18 @@ namespace DisplayModuleExample
                     // Erases everything on the display
                     displayModule.Clear();
 
-                    DisplayModule.ResourceImageSprite image = displayModule.AddResourceImageSprite(Properties.Resources.ResourceManager, Properties.Resources.BinaryResources._70, Bitmap.BitmapImageType.Jpeg, 10, 10);
+                    // Adding images: [Display Module Name].AddResourceImageSprite(resource_manager, img_ID, img_type, x_pos, y_pos)
+                    DisplayModule.ResourceImageSprite image = displayModule.AddResourceImageSprite(Properties.Resources.ResourceManager, Properties.Resources.BinaryResources.img, Bitmap.BitmapImageType.Jpeg, 44, 16);
+
+                    // Adding labels: [Display Module Name].AddLabelSprite(font, colour, x_pos, y_pos, width, height)
+                    DisplayModule.LabelSprite text = displayModule.AddLabelSprite(ninaB, DisplayModule.Color.White, 36, 99, 100, 30);
                     
+                    // Sets the text that the label displays: [Label Name].SetText(text: string)
+                    text.SetText("TAS Robotics");
+
+                    // Keeps the image and text while the gamepad is unplugged
                     while (gamepad.GetConnectionStatus() == UsbDeviceConnection.NotConnected)
                     {
-
                     }
                 }
                 System.Threading.Thread.Sleep(100);

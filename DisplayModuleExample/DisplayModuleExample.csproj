@@ -10,7 +10,7 @@
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{36E6F9F9-3EC9-4960-919A-E0C59332D90F}</ProjectGuid>
+    <ProjectGuid>{275D607A-4640-4372-9346-05CA58469BF8}</ProjectGuid>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <DeployDevice>Cross Link HERO .NETMF_Mini-USB</DeployDevice>
@@ -71,5 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NinaB.tinyfnt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img.jpg" />
   </ItemGroup>
 </Project>

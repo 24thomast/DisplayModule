@@ -29,6 +29,16 @@ namespace DisplayModuleExample.Properties
         {
             return ((Microsoft.SPOT.Font)(Microsoft.SPOT.ResourceUtility.GetObject(ResourceManager, id)));
         }
+        internal static byte[] GetBytes(Resources.BinaryResources id)
+        {
+            return ((byte[])(Microsoft.SPOT.ResourceUtility.GetObject(ResourceManager, id)));
+        }
+        [System.SerializableAttribute()]
+        internal enum BinaryResources : short
+        {
+            img = -2769,
+            image = 28828,
+        }
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
