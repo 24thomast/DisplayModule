@@ -41,7 +41,7 @@
 
 
 ## More Info:
-For more resources, check out these pages:
+For more resources, check out the pages below.
 - https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/tree/master/HERO%20C%23/HERO%20DisplayModule%20Example
 - https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/tree/master/HERO%20C%23/DisplayBoard
 - https://www.ctr-electronics.com/downloads/api/archive_4.4.X/hero_cs/class_c_t_r_e_1_1_h_e_r_o_1_1_module_1_1_display_module.html
